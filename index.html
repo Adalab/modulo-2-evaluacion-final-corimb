@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -8,7 +8,17 @@
 </head>
 
 <body>
-    <h1></h1>
+    <h1>Buscador de series</h1>
+    <div class="search-container">
+        <input type="text" id="search" class="js-input-value" name="searchInput" placeholder="Título">
+        <button type="button" class="btn js-btn">Search</button>
+    </div>
+    <div class="favorites-list-container js-favorites-list-container">
+        <h2 class="favorites-title">Mis series favoritas</h2>
+    </div>
+    <div class="search-results-container js-search-results-container">
+        <ul class="search-results-list js-search-results-list"></ul>
+    </div>
     <script type="text/javascript" src="./js/main.js"></script>
 </body>
 
