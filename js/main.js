@@ -94,6 +94,7 @@ function updateFavorites() {
       : defaultImg;
     codeHTML += `<img src="${image}" alt="${favorites[index].show.name}" class="serial-img"/>`;
     codeHTML += `<h3 class="serial-title" >${favorites[index].show.name} </h3>`;
+    codeHTML += `<button class="remove-btn js-remove-btn" data-index="${index}">X</button>`;
     codeHTML += `</li>`;
   }
   favoriteBox.innerHTML = codeHTML;
@@ -102,6 +103,7 @@ function updateFavorites() {
   } else {
     btnReset.classList.add('hidden');
   }
+  listenClickRemove();
 }
 
 function restoreFavorites() {
@@ -124,3 +126,19 @@ function resetFavList() {
 }
 
 btnReset.addEventListener('click', resetFavList);
+
+function listenClickRemove() {
+  const buttons = document.querySelectorAll('.js-remove-btn');
+  for (let index = 0; index < buttons.length; index++) {
+    const element = buttons[index];
+    element.addEventListener('click', removeFavItem);
+  }
+}
+
+function removeFavItem(ev) {
+  const element = ev.currentTarget;
+  favorites.splice(element.dataset.index, 1);
+  updateFavorites();
+  saveFavoritesLocalStorage();
+  paintSerials(serials);
+}
