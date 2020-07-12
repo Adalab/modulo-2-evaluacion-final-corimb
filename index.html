@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Buscador de series</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
@@ -13,11 +14,15 @@
         <input type="text" id="search" class="js-input-value" name="searchInput" placeholder="Título">
         <button type="button" class="btn js-btn">Search</button>
     </div>
-    <div class="favorites-list-container js-favorites-list-container">
-        <h2 class="favorites-title">Mis series favoritas</h2>
-    </div>
-    <div class="search-results-container js-search-results-container">
-        <ul class="search-results-list js-search-results-list"></ul>
+    <div class="main-content">
+        <section>
+            <h2 class="favorites-title">Mis series favoritas</h2>
+            <div class="favorites-list-container js-favorites-list-container"></div>
+        </section>
+        <section class="js-search-results-container">
+            <h2>Series buscadas</h2>
+            <ul class="search-results-container search-results-list js-search-results-list"></ul>
+        </section>
     </div>
     <script type="text/javascript" src="./js/main.js"></script>
 </body>
