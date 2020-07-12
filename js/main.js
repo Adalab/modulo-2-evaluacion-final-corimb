@@ -19,7 +19,6 @@ function getData(ev) {
     })
     .then((data) => {
       serials = data;
-      console.log(serials);
       paintSerials(serials);
     })
     .catch((error) => console.log(error));
@@ -28,7 +27,13 @@ function getData(ev) {
 function paintSerials(serials) {
   let codeHTML = '';
   for (let index = 0; index < serials.length; index++) {
-    codeHTML += `<li class="js-serial-element non-fav" id="${serials[index].show.id}">`;
+    let isFav;
+    if (isSerialFavorited(serials[index].show.id)) {
+      isFav = 'fav';
+    } else {
+      isFav = 'non-fav';
+    }
+    codeHTML += `<li class="js-serial-element ${isFav}" id="${serials[index].show.id}">`;
     let image = serials[index].show.image
       ? serials[index].show.image.medium
       : defaultImg;
@@ -48,13 +53,18 @@ function listenClickedSerial() {
   }
 }
 
+function isSerialFavorited(id) {
+  const favorited = favorites.find(
+    (favoriteItem) => favoriteItem.show.id === id
+  );
+  return favorited;
+}
+
 function clickedSerial(ev) {
   const element = ev.currentTarget;
   const clickedId = parseInt(element.id);
   const serial = serials.find((serialItem) => serialItem.show.id === clickedId);
-  const favorited = favorites.find(
-    (favoriteItem) => favoriteItem.show.id === clickedId
-  );
+  const favorited = isSerialFavorited(clickedId);
   if (!favorited) {
     favorites.push(serial);
     element.classList.add('fav');
@@ -87,6 +97,11 @@ function updateFavorites() {
     codeHTML += `</li>`;
   }
   favoriteBox.innerHTML = codeHTML;
+  if (favorites.length >= 1) {
+    btnReset.classList.remove('hidden');
+  } else {
+    btnReset.classList.add('hidden');
+  }
 }
 
 function restoreFavorites() {
@@ -98,3 +113,14 @@ function restoreFavorites() {
 }
 
 window.addEventListener('load', restoreFavorites);
+
+const btnReset = document.querySelector('.js-btn-remove-all');
+
+function resetFavList() {
+  favorites = [];
+  updateFavorites();
+  paintSerials(serials);
+  localStorage.removeItem('favorites');
+}
+
+btnReset.addEventListener('click', resetFavList);

@@ -63,3 +63,7 @@ li {
 .non-fav {
   background-color: #e1e1f7;
 }
+
+.hidden {
+  display: none;
+}
