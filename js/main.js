@@ -24,29 +24,32 @@ function getData(ev) {
     .catch((error) => console.log(error));
 }
 //FUNCIÓN PARA PINTAR LAS SERIES QUE PROVIENEN DEL FETCH:
-function paintSerials(serials) {
-  let codeHTML = '';
-  for (let index = 0; index < serials.length; index++) {
-    //recorremos el array de series:
-    //-cambiar el color si es fav o no
-    let isFav;
-    if (isSerialFavorited(serials[index].show.id)) {
-      isFav = 'fav';
-    } else {
-      isFav = 'non-fav';
+function paintSerials() {
+  // if para cuando el input está vacío que no ejecute la función
+  if (serials.length > 0) {
+    let codeHTML = '';
+    for (let index = 0; index < serials.length; index++) {
+      //recorremos el array de series:
+      //-cambiar el color si es fav o no
+      let isFav;
+      if (isSerialFavorited(serials[index].show.id)) {
+        isFav = 'fav';
+      } else {
+        isFav = 'non-fav';
+      }
+      //-añadir al html los elementos de la lista de seriales sustituyendo partes con variables
+      codeHTML += `<li class="js-serial-element ${isFav}" id="${serials[index].show.id}">`;
+      let image = serials[index].show.image
+        ? serials[index].show.image.medium
+        : defaultImg;
+      codeHTML += `<img src="${image}" alt="${serials[index].show.name}" class="serial-img"/>`;
+      codeHTML += `<h3 class="serial-title" >${serials[index].show.name} </h3>`;
+      codeHTML += `</li>`;
     }
-    //-añadir al html los elementos de la lista de seriales sustituyendo partes con variables
-    codeHTML += `<li class="js-serial-element ${isFav}" id="${serials[index].show.id}">`;
-    let image = serials[index].show.image
-      ? serials[index].show.image.medium
-      : defaultImg;
-    codeHTML += `<img src="${image}" alt="${serials[index].show.name}" class="serial-img"/>`;
-    codeHTML += `<h3 class="serial-title" >${serials[index].show.name} </h3>`;
-    codeHTML += `</li>`;
+    //-añadir el html al ul correspondiente
+    resultsList.innerHTML = codeHTML;
+    listenClickedSerial();
   }
-  //-añadir el html al ul correspondiente
-  resultsList.innerHTML = codeHTML;
-  listenClickedSerial();
 }
 
 //FUNCIÓN PARA IDENTIFICAR LAS SERIES QUE HAN SIDO AÑADIDAS A FAVORITES
@@ -140,7 +143,7 @@ function resetFavList() {
   favorites = [];
   //se actualizan las dos funciones de pintar y se elimina todo de local storage
   updateFavorites();
-  paintSerials(serials);
+  paintSerials();
   localStorage.removeItem('favorites');
 }
 
@@ -165,5 +168,5 @@ function removeFavItem(ev) {
   favorites.splice(element.dataset.index, 1);
   updateFavorites();
   saveFavoritesLocalStorage();
-  paintSerials(serials);
+  paintSerials();
 }
