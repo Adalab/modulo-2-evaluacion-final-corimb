@@ -1,9 +1,9 @@
-# modulo-2-evaluacion-final-corimb
+# Enunciado ejercicio final Módulo 2📝
 
-Enlace de la página: http://beta.adalab.es/modulo-2-evaluacion-final-corimb/ 
+☞Enlace de la página: http://corimb.github.io/modulo-2-evaluacion-final-corimb/
 
 El ejercicio consiste en desarrollar una aplicación web de búsqueda de series de TV, que nos permite
-des/marcar las series como favoritas y guardarlas en local storage.
+des/marcar las series como favoritas y guardarlas en local storage.🎥
 
 La aplicación de búsqueda de series consta de dos partes:
 1. Un campo de texto y un botón para buscar series por su título.
