@@ -52,7 +52,7 @@ li {
 }
 
 .favorites-list-container .serial-img {
-  width: 30%;
+  width: 20%;
   max-height: 80px;
 }
 
@@ -61,6 +61,7 @@ li {
   flex-direction: row;
   flex-wrap: nowrap;
   padding: 10px;
+  cursor: pointer;
 }
 
 .favorites-list-container .js-serial-element .serial-title {
