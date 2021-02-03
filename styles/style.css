@@ -26,6 +26,7 @@ li {
   grid-template-columns: 30% 70%;
   grid-template-rows: 1fr;
   text-align: center;
+  margin-top: 25px;
 }
 
 .serial-element {
@@ -104,7 +105,6 @@ li {
 .btn-remove-all {
   width: 120px;
   font-size: 18px;
-  margin-left: 30%;
   margin-top: 5%;
   background-color: #79188a;
   color: #f7ebeb;
@@ -125,4 +125,15 @@ li {
   background-color: #79188a;
   color: #f7ebeb;
   font-weight: bold;
+  height: 25px;
+}
+
+@media (min-width: 700px) {
+  .search-results-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .main-content {
+    grid-template-columns: 20% 80%;
+  }
 }
