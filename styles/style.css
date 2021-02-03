@@ -52,7 +52,7 @@ li {
 }
 
 .favorites-list-container .serial-img {
-  width: 20%;
+  width: 30%;
   max-height: 80px;
 }
 
@@ -126,9 +126,4 @@ li {
   color: #f7ebeb;
   font-weight: bold;
   height: 25px;
-}
-@media (min-width: 768px) {
-  .search-results-container {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
