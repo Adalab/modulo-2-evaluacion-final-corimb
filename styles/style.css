@@ -127,12 +127,8 @@ li {
   font-weight: bold;
   height: 25px;
 }
-@media all and (min-width: 768px) {
+@media (min-width: 768px) {
   .search-results-container {
     grid-template-columns: repeat(4, 1fr);
-  }
-
-  .main-content {
-    grid-template-columns: 20% 80%;
   }
 }
